@@ -15,9 +15,11 @@ function Option({ label, option = [], ref, className }) {
           <SelectValue placeholder={label}/>
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="light">Light</SelectItem>
-          <SelectItem value="dark">Dark</SelectItem>
-          <SelectItem value="system">System</SelectItem>
+          {
+            option.map((lang)=>{
+              return <SelectItem key={lang} value={lang}>{lang}</SelectItem>
+            })
+          }
         </SelectContent>
       </Select>
     </>
