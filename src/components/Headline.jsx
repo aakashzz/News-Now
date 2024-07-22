@@ -1,3 +1,4 @@
+"use client"
 import React,{useState} from "react";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { IoMdMore } from "react-icons/io";
@@ -15,7 +16,7 @@ function Headline({ imgURL, title, author, date, ref }) {
         <img
           className="w-[850px] h-auto rounded-xl"
           src={imgURL}
-          alt=""
+          alt={title}
         />
       </div>
       <div className="my-2 w-auto h-16 bg-white rounded-xl mx-5 px-4 flex justify-between items-center">

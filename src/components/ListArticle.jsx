@@ -1,21 +1,25 @@
+"use client"
 import React, { useState } from 'react'
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
 import { IoMdMore } from 'react-icons/io'
+import LimitedText from './mini-component/LimitText'
+import Image from "next/image"
 
-function ListArticle({img, title, description, author, date}) {
-   const [save , setSave] = useState(false)
+function ListArticle({img, title, description, author, sourceName, date}) {
+   const [save , setSave] = useState(false);
+   const newDate = date.slice(0,10)
   return (
-    <div className=' border h-60 w-full flex justify-between rounded-xl'>
+    <div className=' border h-fit w-full flex justify-between rounded-xl my-4 hover:shadow-2xl duration-200'>
         <div className=''>
-            <img className='h-60 w-fit p-2 rounded-2xl' src={img} alt="" />
+            <Image className='w-[430px] h-[230px] p-2 rounded-2xl' width={430} height={230} src={img} alt={title} />
         </div>
-        <div className='p-2 w-[70%]'>
+        <div className='p-2 w-[70%] flex flex-row flex-wrap justify-between'>
                <p className='text-xl font-semibold'>{title}</p>
-               <p className='font-light py-3'>{description}</p>
-               <div className='bg-gray-100 h-24 rounded-2xl w-full flex justify-between items-center px-3'>
-                  <div className='h-auto w-40 space-y-2'>
-                     <p className='font-semibold text-lg'>{author}</p>
-                     <p>{date}</p>
+               <LimitedText className={"font-light py-3"} text={description} limit={200} />
+               <div className='bg-gray-100 h-20 rounded-2xl w-full flex justify-between items-center px-3'>
+                  <div className='h-auto w-52 space-y-2'>
+                     <LimitedText text={author || sourceName} limit={13} className={"font-semibold text-lg"}/>
+                     <p>{newDate}</p>
                   </div>
                   <div className=' gap-x-1 flex items-center'>
                   {
