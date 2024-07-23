@@ -12,6 +12,7 @@ import ShortArticles from "@/components/ShortArticles";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import Footer from "@/components/Footer";
+import Loader from "@/components/mini-component/Loader";
 
 export default function Home() {
    const [shortArticle, setShortArticle] = useState([]);
@@ -26,7 +27,9 @@ export default function Home() {
          .then((data) => {
             let arrayOfData = data.data.articles;
             const NullImg = arrayOfData.filter(
-               (item) => item.description !== null && item.title !== item.title.includes("[Removed]")
+               (item) =>
+                  item.description !== null &&
+                  item.title !== item.title.includes("[Removed]")
             );
             setShortArticle(NullImg);
             const nonNullImg = arrayOfData.filter(
@@ -37,22 +40,26 @@ export default function Home() {
          .finally(setLoading(false));
 
       axios(
-         `  https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=30&apiKey=${configur.newsApiKey}`
+         `  https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=80&apiKey=${configur.newsApiKey}`
       )
          .then((data) => {
             let arrayOfData = data.data.articles;
             const nonNullImg = arrayOfData.filter(
-               (item) => item.urlToImage !== null && item.title == item.title
+               (item) => item.urlToImage !== null
             );
             setEverything(nonNullImg);
          })
          .finally(setLoading(false));
    }, [loading, country]);
 
+   function treadingGoToLink(link) {
+      return window.open(link, "_blank");
+   }
+
    return (
       <main className="min-h-screen bg-white antialiased bg-grid-white/[0.02]">
          {loading ? (
-            <p>Loading...</p>
+            <Loader/>
          ) : (
             <>
                <Navbar />
@@ -69,7 +76,13 @@ export default function Home() {
                            <div className="grid grid-cols-3  h-[400px]">
                               <div className="h-fit w-fit hover:shadow-2xl duration-200 col-span-2 rounded-2xl shadow ">
                                  <Image
-                                    className="h-[390px] w-[800px] rounded-2xl "
+                                    onClick={() =>
+                                       treadingGoToLink(
+                                          topHeadline[0]?.url ||
+                                             everything[0]?.url
+                                       )
+                                    }
+                                    className="h-[390px] w-[800px] rounded-2xl cursor-pointer"
                                     width={800}
                                     height={390}
                                     src={
@@ -81,7 +94,13 @@ export default function Home() {
                               </div>
                               <div className="border p-2 h-[390px] rounded-2xl hover:shadow-2xl duration-200">
                                  <Image
-                                    className="rounded-2xl w-[387px] h-[217px]"
+                                    onClick={() =>
+                                       treadingGoToLink(
+                                          topHeadline[1]?.url ||
+                                             everything[1]?.url
+                                       )
+                                    }
+                                    className="rounded-2xl w-[387px] h-[217px] cursor-pointer"
                                     width={387}
                                     height={217}
                                     src={
@@ -114,9 +133,15 @@ export default function Home() {
                               </div>
                            </div>
                            <div className="grid grid-cols-2 gap-x-4">
-                              <div className="border rounded-2xl hover:shadow-2xl duration-200 p-2">
+                              <div className="border rounded-2xl hover:shadow-2xl  duration-200 p-2">
                                  <Image
-                                    className="rounded-xl h-[300px]  w-[600px]"
+                                 onClick={() =>
+                                    treadingGoToLink(
+                                       topHeadline[2]?.url ||
+                                          everything[2]?.url
+                                    )
+                                 }
+                                    className="rounded-xl h-[300px] cursor-pointer w-[600px]"
                                     width={600}
                                     height={300}
                                     src={
@@ -147,7 +172,13 @@ export default function Home() {
                               </div>
                               <div className="border rounded-2xl hover:shadow-2xl duration-200 p-2">
                                  <Image
-                                    className="rounded-xl h-[300px] w-[600px]"
+                                 onClick={() =>
+                                    treadingGoToLink(
+                                       topHeadline[3]?.url ||
+                                          everything[3]?.url
+                                    )
+                                 }
+                                    className="rounded-xl h-[300px] w-[600px] cursor-pointer"
                                     width={600}
                                     height={300}
                                     src={
@@ -190,6 +221,7 @@ export default function Home() {
                                     author={data.author}
                                     sourceName={data.source.name}
                                     date={data.publishedAt}
+                                    link={data.url}
                                  />
                               );
                            })}
@@ -207,6 +239,7 @@ export default function Home() {
                                     author={item.author}
                                     date={item.publishedAt}
                                     sourceName={item.source.name}
+                                    link={item.url}
                                  />
                               ))}
                            </div>

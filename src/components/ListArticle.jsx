@@ -5,13 +5,16 @@ import { IoMdMore } from 'react-icons/io'
 import LimitedText from './mini-component/LimitText'
 import Image from "next/image"
 
-function ListArticle({img, title, description, author, sourceName, date}) {
+function ListArticle({img, title, description, author, sourceName, date, link}) {
    const [save , setSave] = useState(false);
    const newDate = date.slice(0,10)
+   function goToLink(){
+      window.open(link,"_blank")
+   }
   return (
     <div className=' border h-fit w-full flex justify-between rounded-xl my-4 hover:shadow-2xl duration-200'>
         <div className=''>
-            <Image className='w-[430px] h-[230px] p-2 rounded-2xl' width={430} height={230} src={img} alt={title} />
+            <Image onClick={goToLink} className='w-[430px] cursor-pointer h-[230px] p-2 rounded-2xl' width={430} height={230} src={img} alt={title} />
         </div>
         <div className='p-2 w-[70%] flex flex-row flex-wrap justify-between'>
                <p className='text-xl font-semibold'>{title}</p>
