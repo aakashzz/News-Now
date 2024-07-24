@@ -110,10 +110,14 @@ export default function Home() {
                                     }
                                  />
                                  <div className="px-1 py-2">
-                                    <p className="text-lg font-semibold">
-                                       {topHeadline[1]?.title ||
-                                          everything[1]?.title}
-                                    </p>
+                                 <LimitedText
+                                       text={
+                                          topHeadline[1]?.title ||
+                                          everything[1]?.title
+                                       }
+                                       className={"text-lg font-semibold"}
+                                       limit={75}
+                                    />
 
                                     <LimitedText
                                        text={
