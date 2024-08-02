@@ -14,7 +14,7 @@ function ListArticle({img, title, description, author, sourceName, date, link}) 
   return (
     <div className=' border h-fit w-full flex justify-between rounded-xl my-4 hover:shadow-2xl duration-200'>
         <div className=''>
-            <Image onClick={goToLink} className='w-[430px] cursor-pointer h-[230px] p-2 rounded-2xl' width={430} height={230} src={img} alt={title} />
+            <Image onClick={goToLink} loading="lazy" className='w-[430px] cursor-pointer h-[230px] p-2 rounded-2xl' width={430} height={230} src={img} alt={title} />
         </div>
         <div className='p-2 w-[70%] flex flex-row flex-wrap justify-between'>
                <p className='text-xl font-semibold'>{title}</p>

@@ -17,9 +17,9 @@ function Option({ label, option = [], ref, className }) {
   }
   return (
     <>
-      <Select onValueChange={clickedOption}>
+      <Select onValueChange={clickedOption} defaultValue="in">
         <SelectTrigger className="w-[150px]">
-          <SelectValue  ref={ref} placeholder={label} defaultValue={'en'}/>
+          <SelectValue  ref={ref} placeholder={label} defaultValue={'in'}/>
         </SelectTrigger>
         <SelectContent >
           <SelectGroup >

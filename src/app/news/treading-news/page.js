@@ -15,7 +15,6 @@ import Loader from "@/components/mini-component/Loader";
 function TreadingNews() {
    const country = useSelector((state) => state.country.country);
    const [headline, setHeadline] = useState([]);
-   const [listOfHeadline, SetListOfHeadline] = useState([]);
    const [loading, setLoading] = useState([]);
    useEffect(() => {
       axios(

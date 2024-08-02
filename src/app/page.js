@@ -13,6 +13,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import Image from "next/image";
 import Footer from "@/components/Footer";
 import Loader from "@/components/mini-component/Loader";
+import { searchHeadlineApi } from "@/hook/searchHeadlineApi";
 
 export default function Home() {
    const [shortArticle, setShortArticle] = useState([]);
@@ -28,8 +29,8 @@ export default function Home() {
             let arrayOfData = data.data.articles;
             const NullImg = arrayOfData.filter(
                (item) =>
-                  item.description !== null &&
-                  item.title !== item.title.includes("[Removed]")
+                  item.description !== null ||
+                  item.urlToImage === null
             );
             setShortArticle(NullImg);
             const nonNullImg = arrayOfData.filter(
@@ -55,6 +56,9 @@ export default function Home() {
    function treadingGoToLink(link) {
       return window.open(link, "_blank");
    }
+   // searchHeadlineApi(configur.newsApiKey,"india").then((data)=>{
+   //    console.log(data);
+   // })
 
    return (
       <main className="min-h-screen bg-white antialiased bg-grid-white/[0.02]">
@@ -85,6 +89,7 @@ export default function Home() {
                                     className="h-[390px] w-[800px] rounded-2xl cursor-pointer"
                                     width={800}
                                     height={390}
+                                    loading="lazy"
                                     src={
                                        topHeadline[0]?.urlToImage ||
                                        everything[0]?.urlToImage ||
@@ -100,9 +105,10 @@ export default function Home() {
                                              everything[1]?.url
                                        )
                                     }
-                                    className="rounded-2xl w-[387px] h-[217px] cursor-pointer"
+                                    className="rounded-xl w-[394px] h-[217px] cursor-pointer"
                                     width={387}
                                     height={217}
+                                    loading="lazy"
                                     src={
                                        topHeadline[1]?.urlToImage ||
                                        everything[1]?.urlToImage ||
@@ -148,6 +154,7 @@ export default function Home() {
                                     className="rounded-xl h-[300px] cursor-pointer w-[600px]"
                                     width={600}
                                     height={300}
+                                    loading="lazy"
                                     src={
                                        topHeadline[2]?.urlToImage ||
                                        everything[2]?.urlToImage ||
@@ -185,6 +192,7 @@ export default function Home() {
                                     className="rounded-xl h-[300px] w-[600px] cursor-pointer"
                                     width={600}
                                     height={300}
+                                    loading="lazy"
                                     src={
                                        topHeadline[3]?.urlToImage ||
                                        everything[3]?.urlToImage ||
@@ -239,7 +247,7 @@ export default function Home() {
                            <div className="grid grid-flow-col justify-items-center ">
                               {shortArticle.map((item) => (
                                  <ShortArticles
-                                    description={item.description}
+                                    description={item.description || item.title}
                                     author={item.author}
                                     date={item.publishedAt}
                                     sourceName={item.source.name}
@@ -255,6 +263,7 @@ export default function Home() {
                <Footer />
             </>
          )}
+         
       </main>
    );
 }
