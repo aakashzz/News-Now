@@ -15,23 +15,6 @@ function Navbar() {
    const [input, setInput] = useState('');
    const dispatch = useDispatch()
    const countryRef = useRef();
-   
-   const languageOption = [
-      "ar",
-      "de",
-      "en",
-      "es",
-      "fr",
-      "he",
-      "it",
-      "nl",
-      "no",
-      "pt",
-      "ru",
-      "sv",
-      "ud",
-      "zh",
-   ];
    const countryOption = [
       "ae",
       "ar",
@@ -102,14 +85,14 @@ function Navbar() {
                   ref={countryRef}
                />
             </div>
-            <div className="pl-36">
+            <div className="pl-44">
                <Link href={"/"}>
                   <Logo />
                </Link>
             </div>
-            <div className="flex items-center justify-between w-80   ">
+            <div className="flex items-center justify-between w-80">
                <div className="text-xl md:text-base flex border p-1 rounded-md">
-                  < >
+                  <>
                      <input value={input} onChange={(e)=>setInput(e.target.value)} placeholder="search" className="w-60 bg-transparent px-2 border-none outline-none shadow-none " />
                      <Link className="text-lg font-medium" href={{
                         pathname:"/result",

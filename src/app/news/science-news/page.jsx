@@ -34,9 +34,8 @@ function ScienceNews() {
             <>
             {
                 loading ? (<Loader />) : (<>
-                    <Navbar />
                <Container>
-                  <Headings />
+               <Headings />
                   <div className="flex justify-center">
                         <Headline
                            imgURL={
@@ -64,7 +63,6 @@ function ScienceNews() {
                         ))}
                      </div>
                </Container>
-               <Footer />
                </>)
             }
                

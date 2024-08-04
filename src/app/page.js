@@ -61,20 +61,19 @@ export default function Home() {
    // })
 
    return (
-      <main className="min-h-screen bg-white antialiased bg-grid-white/[0.02]">
+      <main className="h-full w-full bg-white antialiased bg-grid-white/[0.02]">
          {loading ? (
             <Loader/>
          ) : (
-            <>
-               <Navbar />
+            <>   
                <Container>
                   <Headings />
                   <main>
                      <div className="h-full w-full px-2">
                         <div className=" w-fit py-3">
-                           <h2 className="font-bold text-3xl px-4 ">
+                           <h1 className="font-bold text-3xl px-4 ">
                               Top Headline
-                           </h2>
+                           </h1>
                         </div>
                         <div className=" grid grid-rows-2 h-fit gap-y-4">
                            <div className="grid grid-cols-3  h-[400px]">
@@ -240,9 +239,9 @@ export default function Home() {
                         </div>
                      </div>
                      <div className=" w-full h-full px-2 ">
-                        <h2 className="font-bold text-3xl">
+                        <h1 className="font-bold text-3xl">
                            Short Article's...
-                        </h2>
+                        </h1>
                         <ScrollArea className="w-auto whitespace-nowrap rounded-3xl border my-4">
                            <div className="grid grid-flow-col justify-items-center ">
                               {shortArticle.map((item) => (
@@ -259,9 +258,7 @@ export default function Home() {
                         </ScrollArea>
                      </div>
                   </main>
-               </Container>
-               <Footer />
-            </>
+               </Container>            </>
          )}
          
       </main>

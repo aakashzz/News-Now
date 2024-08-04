@@ -7,7 +7,7 @@ import Image from "next/image"
 
 function ListArticle({img, title, description, author, sourceName, date, link}) {
    const [save , setSave] = useState(false);
-   const newDate = date.slice(0,10)
+   const newDate = date?.slice(0,10)
    function goToLink(){
       window.open(link,"_blank")
    }

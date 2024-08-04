@@ -6,7 +6,7 @@ export const searchHeadlineApi = async (searchInput) => {
         `https://newsapi.org/v2/top-headlines?q=${searchInput}&apiKey=${configur.newsApiKey}`
       );
 
-      return searchHeadline;
+      return searchHeadline.data;
    } catch (error) {
       console.error(error);
    }
