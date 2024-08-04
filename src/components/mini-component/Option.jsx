@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import { useDispatch } from "react-redux";
 import {selectCountry} from '@/lib/features/country'

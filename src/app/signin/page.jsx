@@ -1,4 +1,6 @@
 import Logo from '@/components/Logo'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import Link from 'next/link'
 import React from 'react'
 
@@ -28,11 +30,11 @@ function page() {
                   Email address{' '}
                 </label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="email"
                     placeholder="Email"
-                  ></input>
+                  ></Input>
                 </div>
               </div>
               <div>
@@ -47,11 +49,11 @@ function page() {
                   </a>
                 </div>
                 <div className="mt-2">
-                  <input
+                  <Input
                     className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                     type="password"
                     placeholder="Password"
-                  ></input>
+                  ></Input>
                 </div>
               </div>
               <div>
