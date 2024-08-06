@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Container from "@/components/Container";
 import Headings from "@/components/Headings";
 import axios from "axios";
-import configur from "@/services/configur/configur";
 import { useEffect, useState } from "react";
 import LimitedText from "@/components/mini-component/LimitText";
 import { useSelector } from "react-redux";
@@ -23,7 +22,7 @@ export default function Home() {
    const country = useSelector((state) => state.country.country);
    useEffect(() => {
       axios(
-         ` https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${configur.newsApiKey}`
+         ` https://newsapi.org/v2/top-headlines?country=${country}&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
       )
          .then((data) => {
             let arrayOfData = data.data.articles;
@@ -41,7 +40,7 @@ export default function Home() {
          .finally(setLoading(false));
 
       axios(
-         `  https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=80&apiKey=${configur.newsApiKey}`
+         `  https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=80&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
       )
          .then((data) => {
             let arrayOfData = data.data.articles;

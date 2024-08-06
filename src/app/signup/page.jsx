@@ -1,26 +1,28 @@
 "use client"
 import { Input } from "@/components/ui/input";
-import authService from "@/services/appwrite/appwrite.auth";
+import authService from "@/appwrite/appwrite.auth";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/router";
+import { Button } from "@/components/ui/button";
+import Notify from "@/components/mini-component/Notify";
+import { Label } from "@/components/ui/label";
 function page() {
    const { register, handleSubmit } = useForm();
-   // const router = useRouter();
    const [error, setError] = useState();
-
+   
+   // debugger;
+   
    const createUserAccount = async (data) => {
+      setError("");
       try {
-         console.log(data);
-
          const createdUser = await authService.createAccount(data);
-         console.log(createdUser);
 
          if (createdUser) {
-            const existedUser = await authService.getCurrentAccount(
-               createdUser
-            );
+            const existedUser = await authService.getCurrentAccount(createdUser);
+            console.log(existedUser);
+            
+         //   return <Notify desc={existedUser.name} />;
          } else {
             console.log("Create account failed !");
          }
@@ -59,37 +61,35 @@ function page() {
                      Sign In
                   </Link>
                </p>
-               <p className="text-sm text-red-600 py-1">{error}</p>
+               <p className="text-sm text-red-600 py-1">{error?.message}</p>
                <form onSubmit={handleSubmit(createUserAccount)} className="mt-5">
                   <div className="space-y-5">
                      <div>
-                        <label
+                        <Label
                            htmlFor="name"
                            className="text-base font-medium text-gray-900"
                         >
-                           {" "}
-                           Full Name{" "}
-                        </label>
-                        <input
+                           Full Name
+                        </Label>
+                        <Input
                            className="flex mt-2 h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                            type="text"
                            placeholder="Full Name"
                            id="name"
-                           {...register("username", {
+                           {...register("name", {
                               required: true,
                            })}
                         />
                      </div>
                      <div>
-                        <label
+                        <Label
                            htmlFor="email"
                            className="text-base font-medium text-gray-900"
                         >
-                           {" "}
-                           Email address{" "}
-                        </label>
+                           Email address
+                        </Label>
                         <div className="mt-2">
-                           <input
+                           <Input
                               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                               type="email"
                               placeholder="Email"
@@ -109,16 +109,15 @@ function page() {
                      </div>
                      <div>
                         <div className="flex items-center justify-between">
-                           <label
+                           <Label
                               htmlFor="password"
                               className="text-base font-medium text-gray-900"
                            >
-                              {" "}
-                              Password{" "}
-                           </label>
+                              Password
+                           </Label>
                         </div>
                         <div className="mt-2">
-                           <input
+                           <Input
                               className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                               type="password"
                               placeholder="Password"
@@ -130,17 +129,17 @@ function page() {
                         </div>
                      </div>
                      <div>
-                        <button
-                           type="button"
+                        <Button
+                           type="submit"
                            className="inline-flex w-full items-center justify-center rounded-md bg-black px-3.5 py-2.5 font-semibold leading-7 text-white hover:bg-black/80"
                         >
                            Create Account
-                        </button>
+                        </Button>
                      </div>
                   </div>
                </form>
                <div className="mt-3 space-y-3">
-                  <button
+                  <Button
                      type="button"
                      onClick={createUserAccountWithOauth}
                      className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
@@ -156,7 +155,7 @@ function page() {
                         </svg>
                      </span>
                      Sign up with Google
-                  </button>
+                  </Button>
                </div>
             </div>
          </div>

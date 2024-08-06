@@ -1,12 +1,11 @@
 import {Client, ID, Databases} from 'appwrite'
-import { configur } from '../configur/configur';
 class DatabaseService {
     client = new Client();
     database;
     constructor(){
         this.client
-        .setEndpoint(configur.appwriteURL)
-        .setProject(configur.appwrteProjectId);
+        .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT)
+        .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID);
         this.database = new Databases(this.client)
     }
 

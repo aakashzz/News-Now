@@ -6,7 +6,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Container from "@/components/Container";
 import Headings from "@/components/Headings";
-import configur from "@/services/configur/configur";
+import configur from "@/configur/configur";
 import { useSelector } from "react-redux";
 import ListArticle from "@/components/ListArticle";
 import Footer from "@/components/Footer";

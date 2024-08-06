@@ -4,7 +4,7 @@ import { toast, Toaster } from "sonner"
 
 import { Button } from "@/components/ui/button"
 
-export function Notify() {
+export function Notify({desc}) {
   return (
     <>
     <Toaster />
@@ -12,7 +12,7 @@ export function Notify() {
       variant="outline"
       onClick={() =>
         toast("Event has been created", {
-          description: "Sunday, December 03, 2023 at 9:00 AM",
+          description: {desc},
           action: {
             label: "Done",
             onClick: () => console.log("Done"),

@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import React,{useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import configur from "@/services/configur/configur";
+import configur from "@/configur/configur";
 import Loader from "@/components/mini-component/Loader";
 import ListArticle from "@/components/ListArticle";
 import Headline from "@/components/Headline";
