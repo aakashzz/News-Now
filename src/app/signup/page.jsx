@@ -7,11 +7,12 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import Notify from "@/components/mini-component/Notify";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
+
 function page() {
    const { register, handleSubmit } = useForm();
    const [error, setError] = useState();
-   
-   // debugger;
+   const router = useRouter();
    
    const createUserAccount = async (data) => {
       setError("");
@@ -21,7 +22,7 @@ function page() {
          if (createdUser) {
             const existedUser = await authService.getCurrentAccount(createdUser);
             console.log(existedUser);
-            
+            router.push('/')
          //   return <Notify desc={existedUser.name} />;
          } else {
             console.log("Create account failed !");

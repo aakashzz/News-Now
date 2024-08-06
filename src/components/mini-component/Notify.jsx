@@ -11,8 +11,8 @@ export function Notify({desc}) {
     <Button
       variant="outline"
       onClick={() =>
-        toast("Event has been created", {
-          description: {desc},
+        toast("User Has Logged in", {
+          description: "Roshan singh Login",
           action: {
             label: "Done",
             onClick: () => console.log("Done"),
