@@ -6,7 +6,7 @@ import React from "react";
 import Navbar from "@/components/Navbar";
 import Container from "@/components/Container";
 import Headings from "@/components/Headings";
-import configur from "@/configur/configur";
+
 import { useSelector } from "react-redux";
 import ListArticle from "@/components/ListArticle";
 import Footer from "@/components/Footer";
@@ -18,7 +18,7 @@ function TreadingNews() {
    const [loading, setLoading] = useState([]);
    useEffect(() => {
       axios(
-         ` https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=100&apiKey=${configur.newsApiKey}`
+         ` https://newsapi.org/v2/top-headlines?country=${country}&category=business&pageSize=100&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
       )
          .then((data) => {
             let arrayOfData = data.data.articles;

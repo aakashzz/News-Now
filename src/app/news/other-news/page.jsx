@@ -6,7 +6,6 @@ import Navbar from "@/components/Navbar";
 import React,{useState, useEffect} from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import configur from "@/configur/configur";
 import Loader from "@/components/mini-component/Loader";
 import ListArticle from "@/components/ListArticle";
 import Headline from "@/components/Headline";
@@ -17,7 +16,7 @@ function OtherNews() {
     const country = useSelector((state) => state.country.country);
     useEffect(()=>{
         axios(
-            ` https://newsapi.org/v2/top-headlines?country=${country}&category=technology&pageSize=100&apiKey=${configur.newsApiKey}`
+            ` https://newsapi.org/v2/top-headlines?country=${country}&category=technology&pageSize=100&apiKey=${process.env.NEXT_PUBLIC_NEWS_API_KEY}`
          )
             .then((data) => {
                let arrayOfData = data.data.articles;

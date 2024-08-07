@@ -19,7 +19,6 @@ function page() {
             .then((data) => {
                console.log(data);
                setUser(data);
-               
             })
             .finally(() => setLoading(false));
       }
@@ -34,7 +33,7 @@ function page() {
             <>
                <main className="h-full w-full">
                   {/* DP Section */}
-                  <div className="h-64 w-full ">
+                  <div className="h-80 w-full ">
                      <div className="flex justify-center py-4">
                         <div className="h-[200px] w-[200px] rounded-full ">
                            <img
@@ -42,6 +41,12 @@ function page() {
                               className="rounded-full "
                               alt=""
                            />
+                           <div className="py-2">
+                              <Input
+                              type="file"
+                              className="w-[200px] text-xs"
+                              />
+                           </div>
                            <div className="py-2 disabled:">
                               <Input
                                  type="text"

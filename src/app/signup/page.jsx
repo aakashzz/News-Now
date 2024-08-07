@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { Input } from "@/components/ui/input";
 import authService from "@/appwrite/appwrite.auth";
 import Link from "next/link";
@@ -13,17 +13,16 @@ function page() {
    const { register, handleSubmit } = useForm();
    const [error, setError] = useState();
    const router = useRouter();
-   
+
    const createUserAccount = async (data) => {
       setError("");
       try {
          const createdUser = await authService.createAccount(data);
 
          if (createdUser) {
-            const existedUser = await authService.getCurrentAccount(createdUser);
-            console.log(existedUser);
-            router.push('/')
-         //   return <Notify desc={existedUser.name} />;
+            const userData = await authService.getCurrentUser()
+            if(userData) dispatch(login(userData));
+            //   return <Notify desc={existedUser.name} />;
          } else {
             console.log("Create account failed !");
          }
@@ -63,7 +62,10 @@ function page() {
                   </Link>
                </p>
                <p className="text-sm text-red-600 py-1">{error?.message}</p>
-               <form onSubmit={handleSubmit(createUserAccount)} className="mt-5">
+               <form
+                  onSubmit={handleSubmit(createUserAccount)}
+                  className="mt-5"
+               >
                   <div className="space-y-5">
                      <div>
                         <Label
